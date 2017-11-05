@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BookStore.Models.sale_order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Danh sách phiếu xuất</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info btn-block">
+                <a style="color:white;" href="@Url.Action("Create","sale_order")">Thêm mới</a>
+                @*@Html.ActionLink("Thêm mới", "Create")*@
+            </button>
+        </div>
+
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.sale_order_created_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sale_order_total_money)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sale_order_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.agency.agency_name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sale_order_created_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sale_order_total_money)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sale_order_status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.agency.agency_name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.sale_order_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.sale_order_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

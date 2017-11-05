@@ -1,0 +1,57 @@
+﻿@model BookStore.Models.book
+
+@{
+    ViewBag.Title = "Xóa sách";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có thật sự muốn xóa sách này?</h3>
+<div>
+    <h4>sách</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.book_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.book_seling_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_seling_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.book_purchase_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_purchase_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.supplier_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.supplier_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Danh sách", "Index")
+        </div>
+    }
+</div>

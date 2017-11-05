@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ql_sachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="agency">
+    <Key>
+      <PropertyRef Name="agency_id" />
+    </Key>
+    <Property Name="agency_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agency_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="agency_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="agency_phone" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="agency_debt">
+    <Key>
+      <PropertyRef Name="agency_debt_id" />
+    </Key>
+    <Property Name="agency_debt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_agency" Type="int" Nullable="false" />
+    <Property Name="agency_debt_total_money" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="agency_debt_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="agency_debt_item">
+    <Key>
+      <PropertyRef Name="agency_debt_item_id" />
+    </Key>
+    <Property Name="agency_debt_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_agency_debt" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="agency_debt_item_quantity" Type="int" />
+    <Property Name="agency_debt_item_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="book_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="book_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="fk_supplier" Type="int" Nullable="false" />
+    <Property Name="book_stock" Type="int" />
+    <Property Name="book_seling_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="book_purchase_price" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="purchase_order">
+    <Key>
+      <PropertyRef Name="purchase_order_id" />
+    </Key>
+    <Property Name="purchase_order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_supplier" Type="int" Nullable="false" />
+    <Property Name="purchase_order_created_at" Type="datetime" />
+    <Property Name="purchase_order_total_money" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="purchase_order_status" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="purchase_order_item">
+    <Key>
+      <PropertyRef Name="purchase_order_item_id" />
+    </Key>
+    <Property Name="purchase_order_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_purchase_order" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="purchase_order_item_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="purchase_order_item_quantity" Type="int" />
+    <Property Name="purchase_order_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="purchase_payment">
+    <Key>
+      <PropertyRef Name="purchase_payment_id" />
+    </Key>
+    <Property Name="purchase_payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_purchase_order" Type="int" Nullable="false" />
+    <Property Name="purchase_payment_money_pay" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="purchase_payment_debt" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="purchase_payment_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="purchase_payment_item">
+    <Key>
+      <PropertyRef Name="purchase_payment_item_id" />
+    </Key>
+    <Property Name="purchase_payment_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_purchase_payment" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="purchase_payment_item_quantity" Type="int" />
+    <Property Name="purchase_payment_item_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="purchase_payment_item_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="sale_order">
+    <Key>
+      <PropertyRef Name="sale_order_id" />
+    </Key>
+    <Property Name="sale_order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_agency" Type="int" Nullable="false" />
+    <Property Name="sale_order_created_at" Type="datetime" />
+    <Property Name="sale_order_total_money" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="sale_order_status" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sale_order_item">
+    <Key>
+      <PropertyRef Name="sale_order_item_id" />
+    </Key>
+    <Property Name="sale_order_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_sale_order" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="sale_order_item_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="sale_order_item_quantity" Type="int" />
+    <Property Name="sale_order_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="sale_payment">
+    <Key>
+      <PropertyRef Name="sale_payment_id" />
+    </Key>
+    <Property Name="sale_payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_sale_order" Type="int" Nullable="false" />
+    <Property Name="sale_payment_money_pay" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="sale_payment_debt" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="sale_payment_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sale_payment_item">
+    <Key>
+      <PropertyRef Name="sale_payment_item_id" />
+    </Key>
+    <Property Name="sale_payment_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_sale_payment" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="sale_payment_item_quantity" Type="int" />
+    <Property Name="sale_payment_item_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="sale_payment_item_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="store_quantity" Type="int" />
+    <Property Name="store_seling_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="store_purchase_price" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="store_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="supplier_id" />
+    </Key>
+    <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supplier_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="supplier_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="supplier_phone" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="supplier_debt">
+    <Key>
+      <PropertyRef Name="supplier_debt_id" />
+    </Key>
+    <Property Name="supplier_debt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_supplier" Type="int" Nullable="false" />
+    <Property Name="supplier_debt_total_money" Type="decimal" Precision="14" Scale="0" />
+    <Property Name="supplier_debt_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="supplier_debt_item">
+    <Key>
+      <PropertyRef Name="supplier_debt_item_id" />
+    </Key>
+    <Property Name="supplier_debt_item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_supplier_debt" Type="int" Nullable="false" />
+    <Property Name="fk_book" Type="int" Nullable="false" />
+    <Property Name="supplier_debt_item_quantity" Type="int" />
+    <Property Name="supplier_debt_item_money" Type="decimal" Precision="14" Scale="0" />
+  </EntityType>
+  <Association Name="FK__agency_de__fk_ag__34C8D9D1">
+    <End Role="agency" Type="Self.agency" Multiplicity="1" />
+    <End Role="agency_debt" Type="Self.agency_debt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agency">
+        <PropertyRef Name="agency_id" />
+      </Principal>
+      <Dependent Role="agency_debt">
+        <PropertyRef Name="fk_agency" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__agency_de__fk_ag__37A5467C">
+    <End Role="agency_debt" Type="Self.agency_debt" Multiplicity="1" />
+    <End Role="agency_debt_item" Type="Self.agency_debt_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agency_debt">
+        <PropertyRef Name="agency_debt_id" />
+      </Principal>
+      <Dependent Role="agency_debt_item">
+        <PropertyRef Name="fk_agency_debt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__agency_de__fk_bo__38996AB5">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="agency_debt_item" Type="Self.agency_debt_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="agency_debt_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__book__fk_supplie__145C0A3F">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="fk_supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_bo__24927208">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="purchase_order_item" Type="Self.purchase_order_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="purchase_order_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_bo__31EC6D26">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="purchase_payment_item" Type="Self.purchase_payment_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="purchase_payment_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_pu__239E4DCF">
+    <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="1" />
+    <End Role="purchase_order_item" Type="Self.purchase_order_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="purchase_order">
+        <PropertyRef Name="purchase_order_id" />
+      </Principal>
+      <Dependent Role="purchase_order_item">
+        <PropertyRef Name="fk_purchase_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_pu__2E1BDC42">
+    <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="1" />
+    <End Role="purchase_payment" Type="Self.purchase_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="purchase_order">
+        <PropertyRef Name="purchase_order_id" />
+      </Principal>
+      <Dependent Role="purchase_payment">
+        <PropertyRef Name="fk_purchase_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_pu__30F848ED">
+    <End Role="purchase_payment" Type="Self.purchase_payment" Multiplicity="1" />
+    <End Role="purchase_payment_item" Type="Self.purchase_payment_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="purchase_payment">
+        <PropertyRef Name="purchase_payment_id" />
+      </Principal>
+      <Dependent Role="purchase_payment_item">
+        <PropertyRef Name="fk_purchase_payment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__purchase___fk_su__20C1E124">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+    <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="purchase_order">
+        <PropertyRef Name="fk_supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_orde__fk_ag__1A14E395">
+    <End Role="agency" Type="Self.agency" Multiplicity="1" />
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agency">
+        <PropertyRef Name="agency_id" />
+      </Principal>
+      <Dependent Role="sale_order">
+        <PropertyRef Name="fk_agency" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_orde__fk_bo__1DE57479">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="sale_order_item" Type="Self.sale_order_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="sale_order_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_orde__fk_sa__1CF15040">
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="1" />
+    <End Role="sale_order_item" Type="Self.sale_order_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale_order">
+        <PropertyRef Name="sale_order_id" />
+      </Principal>
+      <Dependent Role="sale_order_item">
+        <PropertyRef Name="fk_sale_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_paym__fk_bo__2B3F6F97">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="sale_payment_item" Type="Self.sale_payment_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="sale_payment_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_paym__fk_sa__276EDEB3">
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="1" />
+    <End Role="sale_payment" Type="Self.sale_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale_order">
+        <PropertyRef Name="sale_order_id" />
+      </Principal>
+      <Dependent Role="sale_payment">
+        <PropertyRef Name="fk_sale_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sale_paym__fk_sa__2A4B4B5E">
+    <End Role="sale_payment" Type="Self.sale_payment" Multiplicity="1" />
+    <End Role="sale_payment_item" Type="Self.sale_payment_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale_payment">
+        <PropertyRef Name="sale_payment_id" />
+      </Principal>
+      <Dependent Role="sale_payment_item">
+        <PropertyRef Name="fk_sale_payment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__store__fk_book__173876EA">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="store" Type="Self.store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="store">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__supplier___fk_bo__3F466844">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="supplier_debt_item" Type="Self.supplier_debt_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="supplier_debt_item">
+        <PropertyRef Name="fk_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__supplier___fk_su__3B75D760">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+    <End Role="supplier_debt" Type="Self.supplier_debt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="supplier_debt">
+        <PropertyRef Name="fk_supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__supplier___fk_su__3E52440B">
+    <End Role="supplier_debt" Type="Self.supplier_debt" Multiplicity="1" />
+    <End Role="supplier_debt_item" Type="Self.supplier_debt_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier_debt">
+        <PropertyRef Name="supplier_debt_id" />
+      </Principal>
+      <Dependent Role="supplier_debt_item">
+        <PropertyRef Name="fk_supplier_debt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ql_sachModelStoreContainer">
+    <EntitySet Name="agency" EntityType="Self.agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="agency_debt" EntityType="Self.agency_debt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="agency_debt_item" EntityType="Self.agency_debt_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="book" EntityType="Self.book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase_order" EntityType="Self.purchase_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase_order_item" EntityType="Self.purchase_order_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase_payment" EntityType="Self.purchase_payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase_payment_item" EntityType="Self.purchase_payment_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale_order" EntityType="Self.sale_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale_order_item" EntityType="Self.sale_order_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale_payment" EntityType="Self.sale_payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale_payment_item" EntityType="Self.sale_payment_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="supplier_debt" EntityType="Self.supplier_debt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="supplier_debt_item" EntityType="Self.supplier_debt_item" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__agency_de__fk_ag__34C8D9D1" Association="Self.FK__agency_de__fk_ag__34C8D9D1">
+      <End Role="agency" EntitySet="agency" />
+      <End Role="agency_debt" EntitySet="agency_debt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__agency_de__fk_ag__37A5467C" Association="Self.FK__agency_de__fk_ag__37A5467C">
+      <End Role="agency_debt" EntitySet="agency_debt" />
+      <End Role="agency_debt_item" EntitySet="agency_debt_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__agency_de__fk_bo__38996AB5" Association="Self.FK__agency_de__fk_bo__38996AB5">
+      <End Role="book" EntitySet="book" />
+      <End Role="agency_debt_item" EntitySet="agency_debt_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__book__fk_supplie__145C0A3F" Association="Self.FK__book__fk_supplie__145C0A3F">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="book" EntitySet="book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_bo__24927208" Association="Self.FK__purchase___fk_bo__24927208">
+      <End Role="book" EntitySet="book" />
+      <End Role="purchase_order_item" EntitySet="purchase_order_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_bo__31EC6D26" Association="Self.FK__purchase___fk_bo__31EC6D26">
+      <End Role="book" EntitySet="book" />
+      <End Role="purchase_payment_item" EntitySet="purchase_payment_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_pu__239E4DCF" Association="Self.FK__purchase___fk_pu__239E4DCF">
+      <End Role="purchase_order" EntitySet="purchase_order" />
+      <End Role="purchase_order_item" EntitySet="purchase_order_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_pu__2E1BDC42" Association="Self.FK__purchase___fk_pu__2E1BDC42">
+      <End Role="purchase_order" EntitySet="purchase_order" />
+      <End Role="purchase_payment" EntitySet="purchase_payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_pu__30F848ED" Association="Self.FK__purchase___fk_pu__30F848ED">
+      <End Role="purchase_payment" EntitySet="purchase_payment" />
+      <End Role="purchase_payment_item" EntitySet="purchase_payment_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__purchase___fk_su__20C1E124" Association="Self.FK__purchase___fk_su__20C1E124">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="purchase_order" EntitySet="purchase_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_orde__fk_ag__1A14E395" Association="Self.FK__sale_orde__fk_ag__1A14E395">
+      <End Role="agency" EntitySet="agency" />
+      <End Role="sale_order" EntitySet="sale_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_orde__fk_bo__1DE57479" Association="Self.FK__sale_orde__fk_bo__1DE57479">
+      <End Role="book" EntitySet="book" />
+      <End Role="sale_order_item" EntitySet="sale_order_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_orde__fk_sa__1CF15040" Association="Self.FK__sale_orde__fk_sa__1CF15040">
+      <End Role="sale_order" EntitySet="sale_order" />
+      <End Role="sale_order_item" EntitySet="sale_order_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_paym__fk_bo__2B3F6F97" Association="Self.FK__sale_paym__fk_bo__2B3F6F97">
+      <End Role="book" EntitySet="book" />
+      <End Role="sale_payment_item" EntitySet="sale_payment_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_paym__fk_sa__276EDEB3" Association="Self.FK__sale_paym__fk_sa__276EDEB3">
+      <End Role="sale_order" EntitySet="sale_order" />
+      <End Role="sale_payment" EntitySet="sale_payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sale_paym__fk_sa__2A4B4B5E" Association="Self.FK__sale_paym__fk_sa__2A4B4B5E">
+      <End Role="sale_payment" EntitySet="sale_payment" />
+      <End Role="sale_payment_item" EntitySet="sale_payment_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__store__fk_book__173876EA" Association="Self.FK__store__fk_book__173876EA">
+      <End Role="book" EntitySet="book" />
+      <End Role="store" EntitySet="store" />
+    </AssociationSet>
+    <AssociationSet Name="FK__supplier___fk_bo__3F466844" Association="Self.FK__supplier___fk_bo__3F466844">
+      <End Role="book" EntitySet="book" />
+      <End Role="supplier_debt_item" EntitySet="supplier_debt_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__supplier___fk_su__3B75D760" Association="Self.FK__supplier___fk_su__3B75D760">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="supplier_debt" EntitySet="supplier_debt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__supplier___fk_su__3E52440B" Association="Self.FK__supplier___fk_su__3E52440B">
+      <End Role="supplier_debt" EntitySet="supplier_debt" />
+      <End Role="supplier_debt_item" EntitySet="supplier_debt_item" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

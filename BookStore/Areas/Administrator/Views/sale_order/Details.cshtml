@@ -1,0 +1,81 @@
+﻿@model BookStore.Models.sale_order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Chi tiết phiếu xuất</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <h4>Phiếu xuất @Model.sale_order_id</h4>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.sale_order_created_at)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.sale_order_created_at)
+            </div>
+
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.sale_order_status)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.sale_order_status)
+            </div>
+
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.agency.agency_name)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.agency.agency_name)
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                Chi tiết phiếu
+            </div>
+            <div class="col-md-offset-3">
+                <table class="table table-striped">
+                    <tr>
+                        <th>tên sách</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                    @foreach (var item in Model.sale_order_item)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.book.book_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sale_order_item_quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sale_order_item_price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sale_order_money)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.sale_order_total_money)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.sale_order_total_money)
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.sale_order_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25594cc3397544a2b37405ed82d313e3" Name="Diagram1">
+        <EntityTypeShape EntityType="ql_sachModel.agency" Width="1.5" PointX="1.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.agency_debt" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.agency_debt_item" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.book" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.purchase_order" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.purchase_order_item" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.purchase_payment" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.purchase_payment_item" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.sale_order" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.sale_order_item" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.sale_payment" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.sale_payment_item" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.store" Width="1.5" PointX="5.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.supplier" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.supplier_debt" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_sachModel.supplier_debt_item" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
+        <AssociationConnector Association="ql_sachModel.FK__agency_de__fk_ag__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_orde__fk_ag__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__agency_de__fk_ag__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__agency_de__fk_bo__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__book__fk_supplie__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_bo__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_bo__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_orde__fk_bo__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_paym__fk_bo__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__store__fk_book__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__supplier___fk_bo__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_pu__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_pu__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_su__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__purchase___fk_pu__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_orde__fk_sa__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_paym__fk_sa__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__sale_paym__fk_sa__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__supplier___fk_su__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_sachModel.FK__supplier___fk_su__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

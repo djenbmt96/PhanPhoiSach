@@ -1,0 +1,51 @@
+﻿@model BookStore.Models.purchase_order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>purchase_order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_order_created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_order_created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_order_total_money)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_order_total_money)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_order_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_order_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.supplier_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.supplier_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.purchase_order_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

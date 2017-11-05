@@ -1,0 +1,196 @@
+﻿@model BookStore.Areas.Administrator.ViewsModels.big_sale_order
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>sale_order</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.sale_order.sale_order_id)
+
+        <div class="form-group">
+            @Html.Label("Đại lý", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("fk_agency", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sale_order.fk_agency, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sale_order_created_at, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sale_order_created_at, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sale_order_created_at, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sale_order_total_money, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sale_order_total_money, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sale_order_total_money, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sale_order_status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sale_order_status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sale_order_status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>PHIẾU XUẤT</h3>
+    </div>
+    <div class="panel-body">
+        <div class="content-row">
+            <h2 class="content-row-title">Chỉnh sửa phiếu xuất @Model.sale_order.sale_order_id</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.sale_order.sale_order_id)
+                <div class="form-group">
+                    @Html.Label("Đại lý", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("fk_agency", null, htmlAttributes: new { @class = "form-control", @Name = "sale_order.fk_agency",@disabled="disabled" })
+                        @Html.ValidationMessageFor(model => model.sale_order.fk_agency, "", new { @class = "text-danger", @name = "sale_order.fk_agency" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sale_order.sale_order_status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="sale_order_sale_order_status" name="sale_order.sale_order_status">
+                            <option value="chưa xử lý">Chưa xử lý</option>
+                            <option value="đã xử lý">Đã xử lý</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.sale_order.sale_order_status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!--Sale order item-->
+
+                <div class="content-row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <b>Thêm chi tiết phiếu xuất</b>
+                            </div>
+                        </div>
+                        <input type="hidden" name="item.Index" value="0" />
+                        <div class="form-group">
+                            @Html.Label("Tên Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("fk_book", null, htmlAttributes: new { @class = "form-control", @id = "idbook" })
+                                @Html.ValidationMessageFor(model => model.sale_order_item.fk_book, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.Label("Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.sale_order_item.sale_order_item_quantity, new { htmlAttributes = new { @class = "form-control", @id = "amount" } })
+                                @Html.ValidationMessageFor(model => model.sale_order_item.sale_order_item_quantity, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="Thêm" id="btnAdd" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Chi tiết phiếu xuất</div>
+                        <table class="table" id="containn">
+                            <thead>
+                                <tr>
+                                    <th>Mã sách</th>
+                                    <th>Tên sách</th>
+                                    <th>Số lượng</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model.sale_order.sale_order_item)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.fk_book)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.book.book_name)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.sale_order_item_quantity)</td>
+                                            <td><button class="btn btn-danger btnDelete">Xóa</button></td>
+                                            @Html.Hidden("item.Index", "a"+item.sale_order_item_id)
+                                            @Html.Hidden("item[a" + item.sale_order_item_id + "].fk_book", item.fk_book)
+                                            @Html.Hidden("item[a" + item.sale_order_item_id + "].sale_order_item_quantity", item.sale_order_item_quantity)
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    var num = 0;
+    $("#btnAdd").click(function () {
+        num += 1;
+        $("#containn").append('<tr>' +
+            '<td>' + $('#idbook').val() + '</td>' +
+            '<td>' + $('#idbook option:selected').text() + '</td>' +
+            '<td>' + $('#amount').val() + '</td>' +
+            '<td><input type="button" value="Xóa" class="btn btn-danger btnDelete" /></td>' +
+            '<input type="hidden" name="item.Index" value="' + (num - 1) + '" />' +
+            '<input type="hidden" name="item[' + (num - 1) + '].fk_book" value="' + $('#idbook').val() + '" />' +
+            '<input type="hidden" name="item[' + (num - 1) + '].sale_order_item_quantity" value="' + $('#amount').val() + '" />' +
+            '</tr>');
+    });
+    $("#containn").on('click', '.btn.btn-danger.btnDelete', function () {
+        $(this).closest('tr').find("input[type='hidden']").remove();
+        $(this).closest('tr').remove();
+    });
+</script>

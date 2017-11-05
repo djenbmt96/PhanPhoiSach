@@ -1,0 +1,122 @@
+﻿@model  BookStore.Areas.Administrator.ViewsModels.big_sale_order
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>PHIẾU XUẤT</h3>
+    </div>
+    <div class="panel-body">
+        <div class="content-row">
+            <h2 class="content-row-title">Tạo phiếu xuất</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Đại lý", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("fk_agency", null, htmlAttributes: new { @class = "form-control", @Name = "sale_order.fk_agency" })
+                        @Html.ValidationMessageFor(model => model.sale_order.fk_agency, "", new { @class = "text-danger", @name = "sale_order.fk_agency" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sale_order.sale_order_status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="sale_order_sale_order_status" name="sale_order.sale_order_status">
+                            <option value="chưa xử lý">Chưa xử lý</option>
+                            <option value="đã xử lý">Đã xử lý</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.sale_order.sale_order_status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!--Sale order item-->
+
+                <div class="content-row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <b>Thêm chi tiết phiếu xuất</b>
+                            </div>
+                        </div>
+                        <input type="hidden" name="item.Index" value="0" />
+                        <div class="form-group">
+                            @Html.Label("Tên Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("fk_book", null, htmlAttributes: new { @class = "form-control", @id = "idbook" })
+                                @Html.ValidationMessageFor(model => model.sale_order_item.fk_book, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.Label("Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.sale_order_item.sale_order_item_quantity, new { htmlAttributes = new { @class = "form-control", @id = "amount" } })
+                                @Html.ValidationMessageFor(model => model.sale_order_item.sale_order_item_quantity, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="Thêm" id="btnAdd" />
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Chi tiết phiếu xuất</div>
+                            <table class="table" id="containn">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã sách</th>
+                                        <th>Tên sách</th>
+                                        <th>Số lượng</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    var num = 0;
+    $("#btnAdd").click(function () {
+        num += 1;
+        $("#containn").append('<tr id="tableRow'+num+'"><td>'+num+'</td>' +
+            '<td>' + $('#idbook').val() + '</td>' +
+            '<td>' + $('#idbook option:selected').text() + '</td>' +
+            '<td>' + $('#amount').val() + '</td>' +
+            '<td><input type="button" value="Xóa" class="btn btn-danger btnDelete" /></td>' +
+            '<input type="hidden" name="item.Index" value="' + (num - 1) + '" />' +
+            '<input type="hidden" name="item[' + (num - 1) + '].fk_book" value="' + $('#idbook').val() + '" />' +
+            '<input type="hidden" name="item[' + (num - 1) + '].sale_order_item_quantity" value="' + $('#amount').val() + '" />' +
+            '</tr>');
+    });
+    $("#containn").on('click', '.btn.btn-danger.btnDelete', function () {
+        $(this).closest('tr').find("input[type='hidden']").remove();
+        $(this).closest('tr').remove();
+    });
+</script>
+

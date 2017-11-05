@@ -1,0 +1,37 @@
+﻿@model BookStore.Models.book
+@{
+    ViewBag.Title = "Quản lý sách";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Sách</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="content-row">
+            <h2 class="content-row-title">Danh sách sản phẩm</h2>
+        </div>
+        <div class="content-row">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sách</th>
+                        <th>Giá bán</th>
+                        <th>Giá nhập</th>
+                        <th>Nhà xuất bản</th>
+                        <th>Số lượng</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @Html.Raw(ViewBag.list)
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

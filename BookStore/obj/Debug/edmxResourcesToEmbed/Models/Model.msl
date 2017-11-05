@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ql_sachModelStoreContainer" CdmEntityContainer="ql_sachEntities">
+    <EntitySetMapping Name="agencies">
+      <EntityTypeMapping TypeName="ql_sachModel.agency">
+        <MappingFragment StoreEntitySet="agency">
+          <ScalarProperty Name="agency_id" ColumnName="agency_id" />
+          <ScalarProperty Name="agency_name" ColumnName="agency_name" />
+          <ScalarProperty Name="agency_address" ColumnName="agency_address" />
+          <ScalarProperty Name="agency_phone" ColumnName="agency_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agency_debt">
+      <EntityTypeMapping TypeName="ql_sachModel.agency_debt">
+        <MappingFragment StoreEntitySet="agency_debt">
+          <ScalarProperty Name="agency_debt_id" ColumnName="agency_debt_id" />
+          <ScalarProperty Name="fk_agency" ColumnName="fk_agency" />
+          <ScalarProperty Name="agency_debt_total_money" ColumnName="agency_debt_total_money" />
+          <ScalarProperty Name="agency_debt_time" ColumnName="agency_debt_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agency_debt_item">
+      <EntityTypeMapping TypeName="ql_sachModel.agency_debt_item">
+        <MappingFragment StoreEntitySet="agency_debt_item">
+          <ScalarProperty Name="agency_debt_item_id" ColumnName="agency_debt_item_id" />
+          <ScalarProperty Name="fk_agency_debt" ColumnName="fk_agency_debt" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="agency_debt_item_quantity" ColumnName="agency_debt_item_quantity" />
+          <ScalarProperty Name="agency_debt_item_money" ColumnName="agency_debt_item_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="ql_sachModel.book">
+        <MappingFragment StoreEntitySet="book">
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="fk_supplier" ColumnName="fk_supplier" />
+          <ScalarProperty Name="book_stock" ColumnName="book_stock" />
+          <ScalarProperty Name="book_seling_price" ColumnName="book_seling_price" />
+          <ScalarProperty Name="book_purchase_price" ColumnName="book_purchase_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchase_order">
+      <EntityTypeMapping TypeName="ql_sachModel.purchase_order">
+        <MappingFragment StoreEntitySet="purchase_order">
+          <ScalarProperty Name="purchase_order_id" ColumnName="purchase_order_id" />
+          <ScalarProperty Name="fk_supplier" ColumnName="fk_supplier" />
+          <ScalarProperty Name="purchase_order_created_at" ColumnName="purchase_order_created_at" />
+          <ScalarProperty Name="purchase_order_total_money" ColumnName="purchase_order_total_money" />
+          <ScalarProperty Name="purchase_order_status" ColumnName="purchase_order_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchase_order_item">
+      <EntityTypeMapping TypeName="ql_sachModel.purchase_order_item">
+        <MappingFragment StoreEntitySet="purchase_order_item">
+          <ScalarProperty Name="purchase_order_item_id" ColumnName="purchase_order_item_id" />
+          <ScalarProperty Name="fk_purchase_order" ColumnName="fk_purchase_order" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="purchase_order_item_price" ColumnName="purchase_order_item_price" />
+          <ScalarProperty Name="purchase_order_item_quantity" ColumnName="purchase_order_item_quantity" />
+          <ScalarProperty Name="purchase_order_money" ColumnName="purchase_order_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchase_payment">
+      <EntityTypeMapping TypeName="ql_sachModel.purchase_payment">
+        <MappingFragment StoreEntitySet="purchase_payment">
+          <ScalarProperty Name="purchase_payment_id" ColumnName="purchase_payment_id" />
+          <ScalarProperty Name="fk_purchase_order" ColumnName="fk_purchase_order" />
+          <ScalarProperty Name="purchase_payment_money_pay" ColumnName="purchase_payment_money_pay" />
+          <ScalarProperty Name="purchase_payment_debt" ColumnName="purchase_payment_debt" />
+          <ScalarProperty Name="purchase_payment_time" ColumnName="purchase_payment_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchase_payment_item">
+      <EntityTypeMapping TypeName="ql_sachModel.purchase_payment_item">
+        <MappingFragment StoreEntitySet="purchase_payment_item">
+          <ScalarProperty Name="purchase_payment_item_id" ColumnName="purchase_payment_item_id" />
+          <ScalarProperty Name="fk_purchase_payment" ColumnName="fk_purchase_payment" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="purchase_payment_item_quantity" ColumnName="purchase_payment_item_quantity" />
+          <ScalarProperty Name="purchase_payment_item_price" ColumnName="purchase_payment_item_price" />
+          <ScalarProperty Name="purchase_payment_item_money" ColumnName="purchase_payment_item_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sale_order">
+      <EntityTypeMapping TypeName="ql_sachModel.sale_order">
+        <MappingFragment StoreEntitySet="sale_order">
+          <ScalarProperty Name="sale_order_id" ColumnName="sale_order_id" />
+          <ScalarProperty Name="fk_agency" ColumnName="fk_agency" />
+          <ScalarProperty Name="sale_order_created_at" ColumnName="sale_order_created_at" />
+          <ScalarProperty Name="sale_order_total_money" ColumnName="sale_order_total_money" />
+          <ScalarProperty Name="sale_order_status" ColumnName="sale_order_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sale_order_item">
+      <EntityTypeMapping TypeName="ql_sachModel.sale_order_item">
+        <MappingFragment StoreEntitySet="sale_order_item">
+          <ScalarProperty Name="sale_order_item_id" ColumnName="sale_order_item_id" />
+          <ScalarProperty Name="fk_sale_order" ColumnName="fk_sale_order" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="sale_order_item_price" ColumnName="sale_order_item_price" />
+          <ScalarProperty Name="sale_order_item_quantity" ColumnName="sale_order_item_quantity" />
+          <ScalarProperty Name="sale_order_money" ColumnName="sale_order_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sale_payment">
+      <EntityTypeMapping TypeName="ql_sachModel.sale_payment">
+        <MappingFragment StoreEntitySet="sale_payment">
+          <ScalarProperty Name="sale_payment_id" ColumnName="sale_payment_id" />
+          <ScalarProperty Name="fk_sale_order" ColumnName="fk_sale_order" />
+          <ScalarProperty Name="sale_payment_money_pay" ColumnName="sale_payment_money_pay" />
+          <ScalarProperty Name="sale_payment_debt" ColumnName="sale_payment_debt" />
+          <ScalarProperty Name="sale_payment_time" ColumnName="sale_payment_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sale_payment_item">
+      <EntityTypeMapping TypeName="ql_sachModel.sale_payment_item">
+        <MappingFragment StoreEntitySet="sale_payment_item">
+          <ScalarProperty Name="sale_payment_item_id" ColumnName="sale_payment_item_id" />
+          <ScalarProperty Name="fk_sale_payment" ColumnName="fk_sale_payment" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="sale_payment_item_quantity" ColumnName="sale_payment_item_quantity" />
+          <ScalarProperty Name="sale_payment_item_price" ColumnName="sale_payment_item_price" />
+          <ScalarProperty Name="sale_payment_item_money" ColumnName="sale_payment_item_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stores">
+      <EntityTypeMapping TypeName="ql_sachModel.store">
+        <MappingFragment StoreEntitySet="store">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="store_quantity" ColumnName="store_quantity" />
+          <ScalarProperty Name="store_seling_price" ColumnName="store_seling_price" />
+          <ScalarProperty Name="store_purchase_price" ColumnName="store_purchase_price" />
+          <ScalarProperty Name="store_time" ColumnName="store_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="suppliers">
+      <EntityTypeMapping TypeName="ql_sachModel.supplier">
+        <MappingFragment StoreEntitySet="supplier">
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+          <ScalarProperty Name="supplier_phone" ColumnName="supplier_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="supplier_debt">
+      <EntityTypeMapping TypeName="ql_sachModel.supplier_debt">
+        <MappingFragment StoreEntitySet="supplier_debt">
+          <ScalarProperty Name="supplier_debt_id" ColumnName="supplier_debt_id" />
+          <ScalarProperty Name="fk_supplier" ColumnName="fk_supplier" />
+          <ScalarProperty Name="supplier_debt_total_money" ColumnName="supplier_debt_total_money" />
+          <ScalarProperty Name="supplier_debt_time" ColumnName="supplier_debt_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="supplier_debt_item">
+      <EntityTypeMapping TypeName="ql_sachModel.supplier_debt_item">
+        <MappingFragment StoreEntitySet="supplier_debt_item">
+          <ScalarProperty Name="supplier_debt_item_id" ColumnName="supplier_debt_item_id" />
+          <ScalarProperty Name="fk_supplier_debt" ColumnName="fk_supplier_debt" />
+          <ScalarProperty Name="fk_book" ColumnName="fk_book" />
+          <ScalarProperty Name="supplier_debt_item_quantity" ColumnName="supplier_debt_item_quantity" />
+          <ScalarProperty Name="supplier_debt_item_money" ColumnName="supplier_debt_item_money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

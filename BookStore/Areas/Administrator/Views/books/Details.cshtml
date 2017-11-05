@@ -1,0 +1,51 @@
+﻿@model BookStore.Models.book
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết sách</h2>
+
+<div>
+    <h4>sách</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.book_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.book_seling_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_seling_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.book_purchase_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_purchase_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.supplier_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.supplier_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.book_id }) |
+    @Html.ActionLink("Danh sách", "Index")
+</p>
